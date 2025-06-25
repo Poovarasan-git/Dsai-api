@@ -1,18 +1,9 @@
-# 🛒 Create Shop Question API
-Creates a new question for dynamic shop form input.
----
-
-## ✅ Endpoint
-
+# 🛒 Create Shop Question API 
+#### ✅ Endpoint
 ```http
-POST /shop-question/create
-Content-Type: application/json
+Method: POST  http://localhost:8000/api/v1/shop-question/create
 ```
-
----
-
-## 📥 Request Body
-
+#### 📥 Request Body
 ```json
 {
   "questionText": "What is your housing status?",
@@ -24,14 +15,7 @@ Content-Type: application/json
   "options": ["other", "owned"]
 }
 ```
-
-
----
-
-## 🔁 Backend Processing
-
-## 📤 Response (Success)
-
+#### 📤 Response (Success)
 ```json
 {
   "success": true,
@@ -54,31 +38,46 @@ Content-Type: application/json
   }
 }
 ```
-
 ---
 
-## 🔍 Validation Rules
 
-| Field         | Rule                                              |
-|---------------|---------------------------------------------------|
-| questionText  | Must be a non-empty string                        |
-| screenNumber  | Should be numeric or convertible to number        |
-| fieldType     | Must be one of `"SL"`, `"TX"`, etc.               |
-| minLength     | Integer ≥ 0                                       |
-| maxLength     | Integer ≥ minLength                               |
-| isRequired    | Must be `"1"` or `"0"`                            |
-| options       | Required only for `"SL"` fieldType                |
+# OLD
+#### 📥 Request Body
+```json
+{
+  "questionText": "check",
+  "screenNumber": "1",
+  "fieldType": "SL",
+  "minLength": 1,
+  "maxLength": 4735,
+  "isRequired": "1",
+"options": [{"key": "rented", "value": "Rented"},{"key": "owned", "value": "Owned"},{"key": "parental", "value": "Parental"},{"key": "other", "value": "Other"}]
+}
+```
+#### 📤 Response (Success)
+```json
+{
+    "success": true,
+    "message": "Question created",
+    "data": {
+        "id": 6,
+        "questionText": "check",
+      "❌options": "[{\"key\":\"rented\",\"value\":\"Rented\"},{\"key\":\"owned\",\"value\":\"Owned\"},{\"key\":\"parental\",\"value\":\"Parental\"},{\"key\":\"other\",\"value\":\"Other\"}]", 
+        "isRequired": "1",
+        "screenNumber": "1",
+        "fieldType": "SL",
+        "minLength": 1,
+        "maxLength": 4735,
+        "isActive": "1",
+        "updatedAt": "2025-06-25T10:53:31.729Z",
+        "createdAt": "2025-06-25T10:53:31.729Z"
+    }
+}
+```
 
----
 
-## ❌ Common Mistakes
 
-| Input Format                        | ❌ Problem                              | ✅ Fix                              |
-|-------------------------------------|-----------------------------------------|-------------------------------------|
-| `"options": "[{}, {}]"`             | Options are empty objects               | Use real values or remove them      |
-| `"options": "[{"key":"x"}]"`    | Invalid JSON string in string format    | Use array, not stringified JSON     |
-| `"options": [""]`                   | Empty options                           | Filter out blank entries            |
 
----
+
 
 
