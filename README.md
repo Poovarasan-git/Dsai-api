@@ -335,3 +335,73 @@ Method: DELETE  http://localhost:8000/api/v1/shop-question/delete
 
 
 
+# 🐞 API Consistency & Data Format Bug Report
+
+This document outlines current known inconsistencies and data format issues across CRUD operations in the Shop Question API.
+
+---
+## 🚧 1. CREATE Endpoint Bugs
+### 1. `screenNumber` Type Inconsistency
+- `"screenNumber": "1"` is passed as a string.
+- ✅ **Fix:** Unify to number type (`screenNumber: 1`) for consistency.
+
+### 2. `options` Stored as JSON String Instead of Array
+```json
+❌ "options": "[{\"key\":\"rented\",\"value\":\"Rented\"}]"
+```
+- Stored as a **stringified JSON** instead of a real JSON array.
+- ✅ **Fix:** Store `options` as native JSON array using `Sequelize.JSON` or equivalent type.
+
+---
+
+## 📖 2. READ/List Endpoint Bugs
+
+### 1. `isRequired` Type Inconsistency
+| Action    | Value Returned |
+|-----------|----------------|
+| Create/Update | `"1"` or `"0"` *(string)* |
+| Read/List     | `true` / `false` *(boolean)* ❌
+
+- ✅ **Fix:** Return `isRequired` as consistent boolean or string in all endpoints.
+
+### 2. Invalid `options` Format Cases
+| Input Format                            | ❌ Problem                        | ✅ Fix                                 |
+|-----------------------------------------|----------------------------------|----------------------------------------|
+| `"options": "[{}, {}]"`                 | Options are empty objects        | Use real values or remove              |
+| `"options": "[{\"key\":\"rented\"}]"` | Invalid stringified JSON format | Use actual array, not a JSON string    |
+| `"options": []`                         | Empty options                    | Filter out blank entries on save/read  |
+
+## 🛠 3. UPDATE Endpoint Bugs
+
+### 1. `options` Field Format Bug
+- Same issue as **CREATE**: stored as stringified JSON instead of array.
+- ✅ **Fix:** Normalize and validate `options` as an array before saving.
+
+## ❌ 4. DELETE Endpoint Bugs
+
+### 1. Unvalidated Extra Fields Accepted
+```json
+// Accepted (but should be rejected)
+{
+  "id": 1,
+  "questionText": "Test",
+  "fieldType": "SL",
+  "options": [ ... ]
+}
+```
+- ❌ DELETE accepts full question object but only needs `id`.
+- ✅ **Fix:** Validate request to allow only `id`, and reject extra fields.
+
+## ✅ Recommendations Summary
+- 🔁 Normalize `isRequired` as boolean in **all** endpoints.
+- 🧹 Store `options` as proper JSON array (not string).
+- 🧪 Add request validation to **CREATE**, **UPDATE**, and **DELETE** endpoints.
+- 📦 Clean up unused or invalid `options` entries.
+---
+
+
+
+
+
+
+
