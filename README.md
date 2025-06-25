@@ -347,7 +347,7 @@ This document outlines current known inconsistencies and data format issues acro
 
 ### 2. `options` Stored as JSON String Instead of Array
 ```json
-❌ "options": "[{\"key\":\"rented\",\"value\":\"Rented\"}]"
+"❌options": "[{\"key\":\"rented\",\"value\":\"Rented\"}]"
 ```
 - Stored as a **stringified JSON** instead of a real JSON array.
 - ✅ **Fix:** Store `options` as native JSON array using `Sequelize.JSON` or equivalent type.
