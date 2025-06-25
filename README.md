@@ -285,7 +285,7 @@ Method: DELETE  http://localhost:8000/api/v1/shop-question/delete
 #### 📥 Request Body
 ```json
 {
-  "✅id": 1,
+  "✅id": 1
 }
 ```
 #### 📤 Response (Success)
