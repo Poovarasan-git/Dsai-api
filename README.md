@@ -5,8 +5,8 @@
 | questionText  | Must be a non-empty string & only allow text with ? (max: 250)              |
 | screenNumber  | Should be numeric or convertible to number. (max : 5)      |
 | fieldType     | Must be one of `"SL"`, `"TX"`, etc.               |
-| minLength     | Integer > 0     (1 to 5)                                  |
-| maxLength     | Integer > minLength   (2 to 250)                            |
+| minLength     | Integer > 0  ====> (1 to 5)                                  |
+| maxLength     | Integer > minLength ====> (2 to 250)                            |
 | isRequired    | Must be `"1"` or `"0"`                            |
 | options       | Required only for `"SL"` fieldType                |
 #### ✅ Endpoint
