@@ -114,8 +114,8 @@ Method: GET  http://localhost:8000/api/v1/shop-question/list
 
 | Input Format                        | ❌ Problem                              | ✅ Fix                             |
 |-------------------------------------|-----------------------------------------|-------------------------------------|
-| `"options": "[{}, {}]"`             | Options are empty objects               | Use real values or remove them      |
-| `"options": "[{"key":"rented"}]"`   | Invalid JSON string in string format    | Use array, not stringified JSON     |
+| `"options": [{}, {}]`             | Options are empty objects               | Use real values or remove them      |
+| `"options": [{"key":"rented"}]`   | Invalid JSON string format              | use actual JSON object/array            |
 | `"options": []`,                    | Empty options                           | Filter out blank                    |
 
 #### 📥 Request Body ❌ Not Required
@@ -367,8 +367,8 @@ This document outlines current known inconsistencies and data format issues acro
 ### 2. Invalid `options` Format Cases
 | Input Format                            | ❌ Problem                        | ✅ Fix                                 |
 |-----------------------------------------|----------------------------------|----------------------------------------|
-| `"options": "[{}, {}]"`                 | Options are empty objects        | Use real values or remove              |
-| `"options": "[{\"key\":\"rented\"}]"` | Invalid stringified JSON format | Use actual array, not a JSON string    |
+| `"options": [{}, {}]`                 | Options are empty objects        | Use real values or remove              |
+| `"options": [{\"key\":\"rented\"}]`   | Invalid stringified JSON format    | Use actual array  |
 | `"options": []`                         | Empty options                    | Filter out blank entries on save/read  |
 
 ## 🛠 3. UPDATE Endpoint Bugs
