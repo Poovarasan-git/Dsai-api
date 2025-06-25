@@ -39,9 +39,7 @@ Method: POST  http://localhost:8000/api/v1/shop-question/create
 }
 ```
 ---
-
-
-# OLD
+## OLD
 #### 📥 Request Body
 ```json
 {
