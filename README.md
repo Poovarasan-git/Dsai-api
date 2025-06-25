@@ -381,7 +381,6 @@ This document outlines current known inconsistencies and data format issues acro
 
 ### 1. Unvalidated Extra Fields Accepted
 ```json
-// Accepted (but should be rejected)
 {
   "id": 1,
   "questionText": "Test",
