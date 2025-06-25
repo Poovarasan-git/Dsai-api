@@ -192,6 +192,132 @@ Method: GET  http://localhost:8000/api/v1/shop-question/list
 }
 ```
 
+# 🛒 Update Shop Question API 
+#### ✅ Endpoint
+```http
+Method: POST  http://localhost:8000/api/v1/shop-question/update
+```
+#### 📥 Request Body
+```json
+{
+  "id":1,
+  "questionText": "check update",
+  "screenNumber": "1",
+  "fieldType": "SL",
+  "minLength": 1,
+  "maxLength": 47,
+  "isRequired": "1",
+  "✅options": ["other", "owned"]
+}
+```
+#### 📤 Response (Success)
+```json
+{
+  "success": true,
+  "message": "Question create",
+  "data": {
+    "id": 1,
+    "questionText": "check update",
+    "screenNumber": "1",
+    "fieldType": "SL",
+    "minLength": 1,
+    "maxLength": 47,
+    "isRequired": "1",
+    "✅options": [
+      { "key": "other", "value": "Other" },
+      { "key": "owned", "value": "Owned" }
+    ],
+    "isActive": "1",
+    "createdAt": "2025-06-25T10:40:00.000Z",
+    "updatedAt": "2025-06-25T10:40:00.000Z"
+  }
+}
+```
+### OLD Method
+#### 📥 Request Body
+```json
+{
+  "id":1,
+  "questionText": "check update",
+  "screenNumber": "1",
+  "fieldType": "SL",
+  "minLength": 1,
+  "maxLength": 47,
+  "isRequired": "1",
+  "❌options": [{"key": "rented", "value": "Rented"},{"key": "owned", "value": "Owned"},{"key": "parental", "value": "Parental"},{"key": "other", "value": "Other"}]
+}
+```
+#### 📤 Response (Success)
+```json
+{
+    "success": true,
+    "message": "Question Updated",
+    "data": {
+        "id": 6,
+        "questionText": "check",
+      "❌options": "[{\"key\":\"rented\",\"value\":\"Rented\"},{\"key\":\"owned\",\"value\":\"Owned\"},{\"key\":\"parental\",\"value\":\"Parental\"},{\"key\":\"other\",\"value\":\"Other\"}]", 
+        "isRequired": "1",
+        "screenNumber": "1",
+        "fieldType": "SL",
+        "minLength": 1,
+        "maxLength": 4735,
+        "isActive": "1",
+        "updatedAt": "2025-06-25T10:53:31.729Z",
+        "createdAt": "2025-06-25T10:53:31.729Z"
+    }
+}
+```
+# 🛒 DELETE Shop Question API 
+#### ✅ Endpoint
+```http
+Method: DELETE  http://localhost:8000/api/v1/shop-question/delete
+```
+#### 📥 Request Body
+```json
+{
+  ✅"id": 1,
+}
+```
+#### 📤 Response (Success)
+```json
+{
+    "success": true,
+    "message": "Question deleted",
+    "data": {
+        "id": 1,
+        "questionText": "check Delete",
+        "isActive": "0",
+        "updatedAt": "2025-06-25T12:34:08.203Z"
+    }
+}
+```
+### OLD Method
+#### 📥 Request Body 
+```json
+{
+  ✅"id": 1,
+  "❌questionText": "check Delete",
+  "❌screenNumber": "1",
+  "❌fieldType": "SL",
+  "❌minLength": 1,
+  "❌maxLength": 4735,
+  "❌isRequired": "1",
+ "❌options": [{"key": "rented", "value": "Rented"},{"key": "owned", "value": "Owned"},{"key": "parental", "value": "Parental"},{"key": "other", "value": "Other"}]
+}
+```
+#### 📤 Response (Success)
+```json
+{
+    "success": true,
+    "message": "Question deleted",
+    "data": {
+        "id": 1,
+        "questionText": "check Delete",
+        "isActive": "0",
+        "updatedAt": "2025-06-25T12:34:08.203Z"
+    }
+}
+```
 
 
 
